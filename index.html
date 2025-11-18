@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>English for Economics – Audio Dictionary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        color: #222;
+      }
+
+      header {
+        background: #003366;
+        color: #fff;
+        padding: 1rem 1.5rem;
+      }
+
+      .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .header-main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      header h1 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1.4rem;
+      }
+
+      header p {
+        margin: 0;
+        font-size: 0.9rem;
+        opacity: 0.9;
+      }
+
+      .quote-button {
+        border: none;
+        border-radius: 999px;
+        padding: 0.4rem 0.9rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+        background: #ffffff;
+        color: #003366;
+        font-weight: 600;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        white-space: nowrap;
+      }
+
+      .quote-button:hover {
+        background: #e6f0ff;
+      }
+
+      @media (max-width: 600px) {
+        .header-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .quote-button {
+          align-self: flex-start;
+        }
+      }
+
+      main {
+        padding: 1.5rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .search-container {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .search-container label {
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      #searchInput {
+        flex: 1;
+        min-width: 200px;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 0.95rem;
+      }
+
+      .index {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 0.75rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+
+      .index-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .index-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        justify-content: center;
+      }
+
+      .index-item {
+        padding: 0.15rem 0.4rem;
+        border-radius: 999px;
+        border: 1px solid #ccc;
+        background: #fafafa;
+        font-size: 0.8rem;
+        cursor: pointer;
+        flex: 0 1 auto;
+        min-width: 1.4rem;
+        text-align: center;
+      }
+
+      .index-item:hover {
+        background: #e6f0ff;
+        border-color: #003366;
+      }
+
+      .index-item.active {
+        background: #003366;
+        color: #fff;
+        border-color: #003366;
+      }
+
+      .terms-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .term-card {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 0.75rem 0.9rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .term-main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+
+      .term-word {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .term-meta {
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .play-button {
+        border: none;
+        border-radius: 999px;
+        padding: 0.4rem 0.7rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: #003366;
+        color: #fff;
+      }
+
+      .play-button span.icon {
+        font-size: 1rem;
+      }
+
+      .play-button:disabled {
+        background: #aaa;
+        cursor: not-allowed;
+      }
+
+      .no-results {
+        font-size: 0.9rem;
+        color: #777;
+        margin-top: 0.5rem;
+      }
+
+      .load-more-container {
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      .load-more-btn {
+        border: none;
+        border-radius: 999px;
+        padding: 0.5rem 1.4rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+        background: #e6f0ff;
+        color: #003366;
+        border: 1px solid #003366;
+      }
+
+      .load-more-btn:hover {
+        background: #003366;
+        color: #ffffff;
+      }
+
+      @media (max-width: 600px) {
+        .term-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .play-button {
+          align-self: flex-start;
+        }
+
+        .index-list {
+          flex-wrap: wrap;
+        }
+
+        .index-item {
+          font-size: 0.7rem;
+          padding: 0.1rem 0.3rem;
+          min-width: 1.2rem;
+        }
+      }
+
+      .footer {
+        text-align: center;
+        padding: 1.5rem 0;
+        margin-top: 2rem;
+        color: #555;
+        font-size: 0.9rem;
+      }
+
+      .footer a {
+        color: #003366;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* === Lightbox / Quote Modal === */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+
+      .modal-backdrop.active {
+        display: flex;
+      }
+
+      .modal {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        max-width: 480px;
+        width: 90%;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        position: relative;
+        animation: modalFadeInUp 0.25s ease-out;
+      }
+
+      .modal-title {
+        margin: 0 0 0.5rem 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #003366;
+      }
+
+      .modal-quote {
+        margin: 0 0 0.5rem 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .modal-author {
+        margin: 0;
+        font-size: 0.85rem;
+        color: #555;
+        text-align: right;
+      }
+
+      .modal-controls {
+        margin-top: 0.75rem;
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+      }
+
+      .modal-nav-btn {
+        border: none;
+        border-radius: 999px;
+        width: 2rem;
+        height: 2rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: #e6f0ff;
+        color: #003366;
+        font-size: 1.1rem;
+      }
+
+      .modal-nav-btn:hover {
+        background: #003366;
+        color: #ffffff;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 0.4rem;
+        right: 0.5rem;
+        border: none;
+        background: transparent;
+        font-size: 1.1rem;
+        cursor: pointer;
+        color: #666;
+      }
+
+      .modal-close:hover {
+        color: #000;
+      }
+
+      @keyframes modalFadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <div class="header-main">
+          <h1>English for Economics – Audio Dictionary</h1>
+          <p>
+            Click 🔊 to hear the pronunciation. Use the search box or the A–Z
+            index to filter terms.
+          </p>
+        </div>
+        <button id="quoteButton" class="quote-button" type="button">
+          Click for a quote
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="search-container">
+        <label for="searchInput">Search term:</label>
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Type to filter (e.g. inflation, tariff)..."
+        />
+      </section>
+
+      <section class="index">
+        <div class="index-title">Index (click a letter to filter)</div>
+        <div id="indexList" class="index-list"></div>
+      </section>
+
+      <section>
+        <div id="termsContainer" class="terms-container"></div>
+        <div id="noResults" class="no-results" style="display: none">
+          No terms match your filters.
+        </div>
+        <div id="loadMoreContainer" class="load-more-container">
+          <button id="loadMoreBtn" class="load-more-btn" type="button">
+            Load more
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Quote Modal / Lightbox -->
+    <div
+      id="quoteModal"
+      class="modal-backdrop"
+      aria-hidden="true"
+    >
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="quoteTitle"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          aria-label="Close quote popup"
+        >
+          ×
+        </button>
+        <h2 id="quoteTitle" class="modal-title">
+          Economics quotes you may like
+        </h2>
+        <p id="quoteText" class="modal-quote"></p>
+        <p id="quoteAuthor" class="modal-author"></p>
+        <div class="modal-controls">
+          <button
+            id="prevQuoteBtn"
+            class="modal-nav-btn"
+            type="button"
+            aria-label="Previous quote"
+          >
+            ‹
+          </button>
+          <button
+            id="nextQuoteBtn"
+            class="modal-nav-btn"
+            type="button"
+            aria-label="Next quote"
+          >
+            ›
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // How many terms to show at once
+      const PAGE_SIZE = 12;
+
+      // === 1. TERMS LIST ===
+      const terms = [
+        {
+          id: "aggregate-demand",
+          word: "Aggregate demand",
+          pronounce: "aggregate demand",
+          notes: "совокупный спрос (noun phrase)",
+        },
+        {
+          id: "aggregate-supply",
+          word: "Aggregate supply",
+          pronounce: "aggregate supply",
+          notes: "совокупное предложение (noun phrase)",
+        },
+        {
+          id: "bailout",
+          word: "Bailout",
+          pronounce: "bailout",
+          notes: "финансовая помощь (noun)",
+        },
+        {
+          id: "balance-of-payments",
+          word: "Balance of payments",
+          pronounce: "balance of payments",
+          notes: "платежный баланс (noun phrase)",
+        },
+        {
+          id: "bond",
+          word: "Bond",
+          pronounce: "bond",
+          notes: "облигация (noun)",
+        },
+        {
+          id: "budget-deficit",
+          word: "Budget deficit",
+          pronounce: "budget deficit",
+          notes: "бюджетный дефицит (noun phrase)",
+        },
+        {
+          id: "bureaucracy",
+          word: "Bureaucracy",
+          pronounce: "bureaucracy",
+          notes: "бюрократия (noun)",
+        },
+        {
+          id: "capital",
+          word: "Capital",
+          pronounce: "capital",
+          notes: "капитал (noun)",
+        },
+        {
+          id: "capital-expenditure",
+          word: "Capital expenditure",
+          pronounce: "capital expenditure",
+          notes: "капитальные затраты (noun phrase)",
+        },
+        {
+          id: "climate",
+          word: "Climate",
+          pronounce: "climate",
+          notes: "климат; инвестиционный климат (noun)",
+        },
+        {
+          id: "competition",
+          word: "Competition",
+          pronounce: "competition",
+          notes: "конкуренция (noun)",
+        },
+        {
+          id: "consumer-confidence",
+          word: "Consumer confidence",
+          pronounce: "consumer confidence",
+          notes: "доверие потребителей (noun phrase)",
+        },
+        {
+          id: "consumer-price-index",
+          word: "Consumer Price Index",
+          pronounce: "consumer price index",
+          notes: "индекс потребительских цен (noun phrase)",
+        },
+        {
+          id: "corporate",
+          word: "Corporate",
+          pronounce: "corporate",
+          notes: "корпоративный (adjective)",
+        },
+        {
+          id: "cost-of-living",
+          word: "Cost of living",
+          pronounce: "cost of living",
+          notes:
+            "прожиточный минимум; стоимость жизни (noun phrase)",
+        },
+        {
+          id: "credit",
+          word: "Credit",
+          pronounce: "credit",
+          notes: "кредит (noun)",
+        },
+        {
+          id: "crisis",
+          word: "Crisis",
+          pronounce: "crisis",
+          notes: "кризис (noun)",
+        },
+        {
+          id: "currency",
+          word: "Currency",
+          pronounce: "currency",
+          notes: "валюта (noun)",
+        },
+        {
+          id: "downturn",
+          word: "Downturn",
+          pronounce: "downturn",
+          notes: "спад; снижение (noun)",
+        },
+        {
+          id: "economic",
+          word: "Economic",
+          pronounce: "economic",
+          notes: "экономический (adjective)",
+        },
+        {
+          id: "economic-growth",
+          word: "Economic growth",
+          pronounce: "economic growth",
+          notes: "экономический рост (noun phrase)",
+        },
+        {
+          id: "economic-indicator",
+          word: "Economic indicator",
+          pronounce: "economic indicator",
+          notes: "экономический показатель (noun phrase)",
+        },
+        {
+          id: "economy",
+          word: "Economy",
+          pronounce: "economy",
+          notes: "экономика (noun)",
+        },
+        {
+          id: "elasticity",
+          word: "Elasticity",
+          pronounce: "elasticity",
+          notes: "эластичность (noun)",
+        },
+        {
+          id: "emerging-market",
+          word: "Emerging market",
+          pronounce: "emerging market",
+          notes: "развивающийся рынок (noun phrase)",
+        },
+        {
+          id: "employment",
+          word: "Employment",
+          pronounce: "employment",
+          notes: "занятость (noun)",
+        },
+        {
+          id: "environmental",
+          word: "Environmental",
+          pronounce: "environmental",
+          notes:
+            "экологический; природоохранный (adjective)",
+        },
+        {
+          id: "entrepreneurship",
+          word: "Entrepreneurship",
+          pronounce: "entrepreneurship",
+          notes: "предпринимательство (noun)",
+        },
+        {
+          id: "exchange-rate",
+          word: "Exchange rate",
+          pronounce: "exchange rate",
+          notes: "обменный курс (noun phrase)",
+        },
+        {
+          id: "export",
+          word: "Export",
+          pronounce: "export",
+          notes: "экспорт (noun/verb)",
+        },
+        {
+          id: "fiscal-policy",
+          word: "Fiscal policy",
+          pronounce: "fiscal policy",
+          notes: "бюджетная политика (noun phrase)",
+        },
+        {
+          id: "foreign-direct-investment",
+          word: "Foreign direct investment",
+          pronounce: "foreign direct investment",
+          notes: "прямые иностранные инвестиции (noun phrase)",
+        },
+        {
+          id: "globalization",
+          word: "Globalization",
+          pronounce: "globalization",
+          notes: "глобализация (noun)",
+        },
+        {
+          id: "import",
+          word: "Import",
+          pronounce: "import",
+          notes: "импорт (noun/verb)",
+        },
+        {
+          id: "inflation",
+          word: "Inflation",
+          pronounce: "inflation",
+          notes: "инфляция (noun)",
+        },
+        {
+          id: "infrastructure",
+          word: "Infrastructure",
+          pronounce: "infrastructure",
+          notes: "инфраструктура (noun)",
+        },
+        {
+          id: "insurance",
+          word: "Insurance",
+          pronounce: "insurance",
+          notes: "страхование (noun)",
+        },
+        {
+          id: "interest-rate",
+          word: "Interest rate",
+          pronounce: "interest rate",
+          notes: "процентная ставка (noun phrase)",
+        },
+        {
+          id: "investment",
+          word: "Investment",
+          pronounce: "investment",
+          notes:
+            "инвестиция; вложение капитала (noun)",
+        },
+        {
+          id: "labour-market",
+          word: "Labour market",
+          pronounce: "labour market",
+          notes: "рынок труда (noun phrase)",
+        },
+        {
+          id: "macroeconomics",
+          word: "Macroeconomics",
+          pronounce: "macroeconomics",
+          notes: "макроэкономика (noun)",
+        },
+        {
+          id: "monetary-policy",
+          word: "Monetary policy",
+          pronounce: "monetary policy",
+          notes:
+            "денежно-кредитная политика (noun phrase)",
+        },
+        {
+          id: "productivity",
+          word: "Productivity",
+          pronounce: "productivity",
+          notes: "производительность (noun)",
+        },
+        {
+          id: "recession",
+          word: "Recession",
+          pronounce: "recession",
+          notes: "рецессия; спад (noun)",
+        },
+        {
+          id: "subsidy",
+          word: "Subsidy",
+          pronounce: "subsidy",
+          notes: "субсидия; дотация (noun)",
+        },
+        {
+          id: "supply-chain",
+          word: "Supply chain",
+          pronounce: "supply chain",
+          notes: "цепочка поставок (noun phrase)",
+        },
+        {
+          id: "tariff",
+          word: "Tariff",
+          pronounce: "tariff",
+          notes: "тариф; таможенная пошлина (noun)",
+        },
+        {
+          id: "unemployment",
+          word: "Unemployment",
+          pronounce: "unemployment",
+          notes: "безработица (noun)",
+        },
+        {
+          id: "capital-flow",
+          word: "Capital flow",
+          pronounce: "capital flow",
+          notes: "движение капитала (noun phrase)",
+        },
+        {
+          id: "capital-injection",
+          word: "Capital injection",
+          pronounce: "capital injection",
+          notes: "вливание капитала (noun phrase)",
+        },
+        {
+          id: "capitalization",
+          word: "Capitalization",
+          pronounce: "capitalization",
+          notes: "капитализация (noun)",
+        },
+        {
+          id: "collateral",
+          word: "Collateral",
+          pronounce: "collateral",
+          notes: "залог, обеспечение (noun)",
+        },
+        {
+          id: "commodity",
+          word: "Commodity",
+          pronounce: "commodity",
+          notes: "сырьевой товар (noun)",
+        },
+        {
+          id: "commodity-price",
+          word: "Commodity price",
+          pronounce: "commodity price",
+          notes: "цена на сырьё (noun phrase)",
+        },
+        {
+          id: "consumer-sentiment",
+          word: "Consumer sentiment",
+          pronounce: "consumer sentiment",
+          notes: "потребительские настроения (noun phrase)",
+        },
+        {
+          id: "contract-enforcement",
+          word: "Contract enforcement",
+          pronounce: "contract enforcement",
+          notes: "исполнение контрактов (noun phrase)",
+        },
+        {
+          id: "corporate-governance",
+          word: "Corporate governance",
+          pronounce: "corporate governance",
+          notes:
+            "корпоративное управление (noun phrase)",
+        },
+        {
+          id: "cost-of-capital",
+          word: "Cost of capital",
+          pronounce: "cost of capital",
+          notes: "стоимость капитала (noun phrase)",
+        },
+        {
+          id: "cost-structure",
+          word: "Cost structure",
+          pronounce: "cost structure",
+          notes: "структура затрат (noun phrase)",
+        },
+        {
+          id: "credit-crunch",
+          word: "Credit crunch",
+          pronounce: "credit crunch",
+          notes: "кредитный кризис (noun phrase)",
+        },
+        {
+          id: "credit-rating",
+          word: "Credit rating",
+          pronounce: "credit rating",
+          notes: "кредитный рейтинг (noun phrase)",
+        },
+        {
+          id: "credit-spread",
+          word: "Credit spread",
+          pronounce: "credit spread",
+          notes: "кредитный спрэд (noun phrase)",
+        },
+        {
+          id: "creditworthiness",
+          word: "Creditworthiness",
+          pronounce: "creditworthiness",
+          notes: "кредитоспособность (noun)",
+        },
+        {
+          id: "currency-reserves",
+          word: "Currency reserves",
+          pronounce: "currency reserves",
+          notes: "валютные резервы (noun phrase)",
+        },
+        {
+          id: "currency-swap",
+          word: "Currency swap",
+          pronounce: "currency swap",
+          notes: "валютный своп (noun phrase)",
+        },
+        {
+          id: "debt-burden",
+          word: "Debt burden",
+          pronounce: "debt burden",
+          notes: "долговая нагрузка (noun phrase)",
+        },
+        {
+          id: "debt-restructuring",
+          word: "Debt restructuring",
+          pronounce: "debt restructuring",
+          notes: "реструктуризация долга (noun phrase)",
+        },
+        {
+          id: "deficit-spending",
+          word: "Deficit spending",
+          pronounce: "deficit spending",
+          notes: "дефицитное финансирование (noun phrase)",
+        },
+        {
+          id: "demand-curve",
+          word: "Demand curve",
+          pronounce: "demand curve",
+          notes: "кривая спроса (noun phrase)",
+        },
+        {
+          id: "demand-shock",
+          word: "Demand shock",
+          pronounce: "demand shock",
+          notes: "шок спроса (noun phrase)",
+        },
+        {
+          id: "disposable-income",
+          word: "Disposable income",
+          pronounce: "disposable income",
+          notes: "располагаемый доход (noun phrase)",
+        },
+        {
+          id: "economic-downturn",
+          word: "Economic downturn",
+          pronounce: "economic downturn",
+          notes: "экономический спад (noun phrase)",
+        },
+        {
+          id: "economic-output",
+          word: "Economic output",
+          pronounce: "economic output",
+          notes: "объём производства (noun phrase)",
+        },
+        {
+          id: "economies-of-scale",
+          word: "Economies of scale",
+          pronounce: "economies of scale",
+          notes: "экономия на масштабе (noun phrase)",
+        },
+        {
+          id: "equity-capital",
+          word: "Equity capital",
+          pronounce: "equity capital",
+          notes: "акционерный капитал (noun phrase)",
+        },
+        {
+          id: "exchange-rate-2",
+          word: "Exchange rate (alt)",
+          pronounce: "exchange rate",
+          notes: "валютный курс (noun phrase)",
+        },
+        {
+          id: "export-subsidy",
+          word: "Export subsidy",
+          pronounce: "export subsidy",
+          notes: "экспортная субсидия (noun phrase)",
+        },
+        {
+          id: "fiscal-capacity",
+          word: "Fiscal capacity",
+          pronounce: "fiscal capacity",
+          notes: "фискальный потенциал (noun phrase)",
+        },
+        {
+          id: "fiscal-rule",
+          word: "Fiscal rule",
+          pronounce: "fiscal rule",
+          notes: "бюджетное правило (noun)",
+        },
+        {
+          id: "fixed-costs",
+          word: "Fixed costs",
+          pronounce: "fixed costs",
+          notes: "постоянные издержки (noun phrase)",
+        },
+        {
+          id: "floating-rate",
+          word: "Floating rate",
+          pronounce: "floating rate",
+          notes: "плавающая ставка (noun phrase)",
+        },
+        {
+          id: "free-trade-agreement",
+          word: "Free trade agreement",
+          pronounce: "free trade agreement",
+          notes:
+            "соглашение о свободной торговле (noun phrase)",
+        },
+        {
+          id: "funding-gap",
+          word: "Funding gap",
+          pronounce: "funding gap",
+          notes: "дефицит финансирования (noun phrase)",
+        },
+        {
+          id: "gross-profit",
+          word: "Gross profit",
+          pronounce: "gross profit",
+          notes: "валовая прибыль (noun phrase)",
+        },
+        {
+          id: "import-quota",
+          word: "Import quota",
+          pronounce: "import quota",
+          notes: "импортная квота (noun phrase)",
+        },
+        {
+          id: "income-inequality",
+          word: "Income inequality",
+          pronounce: "income inequality",
+          notes: "неравенство доходов (noun phrase)",
+        },
+        {
+          id: "inflation-targeting",
+          word: "Inflation targeting",
+          pronounce: "inflation targeting",
+          notes: "таргетирование инфляции (noun phrase)",
+        },
+        {
+          id: "interest-spread",
+          word: "Interest spread",
+          pronounce: "interest spread",
+          notes: "процентный спрэд (noun phrase)",
+        },
+        {
+          id: "investment-climate",
+          word: "Investment climate",
+          pronounce: "investment climate",
+          notes: "инвестиционный климат (noun phrase)",
+        },
+        {
+          id: "labour-force",
+          word: "Labour force",
+          pronounce: "labour force",
+          notes: "рабочая сила (noun phrase)",
+        },
+        {
+          id: "labour-productivity",
+          word: "Labour productivity",
+          pronounce: "labour productivity",
+          notes: "производительность труда (noun phrase)",
+        },
+        {
+          id: "liquidity-crisis",
+          word: "Liquidity crisis",
+          pronounce: "liquidity crisis",
+          notes: "кризис ликвидности (noun phrase)",
+        },
+        {
+          id: "liquidity-injection",
+          word: "Liquidity injection",
+          pronounce: "liquidity injection",
+          notes: "вливание ликвидности (noun phrase)",
+        },
+        {
+          id: "macroeconomic-stability",
+          word: "Macroeconomic stability",
+          pronounce: "macroeconomic stability",
+          notes:
+            "макроэкономическая стабильность (noun phrase)",
+        },
+        {
+          id: "market-penetration",
+          word: "Market penetration",
+          pronounce: "market penetration",
+          notes:
+            "проникновение на рынок (noun phrase)",
+        },
+        {
+          id: "market-saturation",
+          word: "Market saturation",
+          pronounce: "market saturation",
+          notes:
+            "насыщенность рынка (noun phrase)",
+        },
+        {
+          id: "monetary-easing",
+          word: "Monetary easing",
+          pronounce: "monetary easing",
+          notes:
+            "смягчение денежной политики (noun phrase)",
+        },
+        {
+          id: "monetary-tightening",
+          word: "Monetary tightening",
+          pronounce: "monetary tightening",
+          notes:
+            "ужесточение денежной политики (noun phrase)",
+        },
+        {
+          id: "net-income",
+          word: "Net income",
+          pronounce: "net income",
+          notes: "чистая прибыль (noun phrase)",
+        },
+        {
+          id: "net-exports",
+          word: "Net exports",
+          pronounce: "net exports",
+          notes: "чистый экспорт (noun phrase)",
+        },
+        {
+          id: "offshore-banking",
+          word: "Offshore banking",
+          pronounce: "offshore banking",
+          notes: "офшорный банкинг (noun phrase)",
+        },
+        {
+          id: "output-gap",
+          word: "Output gap",
+          pronounce: "output gap",
+          notes: "разрыв выпуска (noun phrase)",
+        },
+        {
+          id: "oversupply",
+          word: "Oversupply",
+          pronounce: "oversupply",
+          notes: "избыток предложения (noun)",
+        },
+        {
+          id: "price-ceiling",
+          word: "Price ceiling",
+          pronounce: "price ceiling",
+          notes: "ценовой потолок (noun phrase)",
+        },
+        {
+          id: "price-elasticity",
+          word: "Price elasticity",
+          pronounce: "price elasticity",
+          notes: "ценовая эластичность (noun phrase)",
+        },
+        {
+          id: "price-fixing",
+          word: "Price fixing",
+          pronounce: "price fixing",
+          notes: "сговор о ценах (noun phrase)",
+        },
+        {
+          id: "private-equity",
+          word: "Private equity",
+          pronounce: "private equity",
+          notes: "частный капитал (noun phrase)",
+        },
+        {
+          id: "productivity-growth",
+          word: "Productivity growth",
+          pronounce: "productivity growth",
+          notes:
+            "рост производительности (noun phrase)",
+        },
+        {
+          id: "protectionism",
+          word: "Protectionism",
+          pronounce: "protectionism",
+          notes: "протекционизм (noun)",
+        },
+        {
+          id: "public-expenditure",
+          word: "Public expenditure",
+          pronounce: "public expenditure",
+          notes:
+            "государственные расходы (noun phrase)",
+        },
+        {
+          id: "public-good",
+          word: "Public good",
+          pronounce: "public good",
+          notes: "общественное благо (noun phrase)",
+        },
+        {
+          id: "purchasing-power",
+          word: "Purchasing power",
+          pronounce: "purchasing power",
+          notes: "покупательная способность (noun phrase)",
+        },
+        {
+          id: "quantitative-easing",
+          word: "Quantitative easing",
+          pronounce: "quantitative easing",
+          notes: "количественное смягчение (noun phrase)",
+        },
+        {
+          id: "real-wages",
+          word: "Real wages",
+          pronounce: "real wages",
+          notes: "реальная заработная плата (noun phrase)",
+        },
+        {
+          id: "recession-risk",
+          word: "Recession risk",
+          pronounce: "recession risk",
+          notes: "риск рецессии (noun phrase)",
+        },
+        {
+          id: "regulatory-burden",
+          word: "Regulatory burden",
+          pronounce: "regulatory burden",
+          notes: "регуляторная нагрузка (noun phrase)",
+        },
+        {
+          id: "risk-premium",
+          word: "Risk premium",
+          pronounce: "risk premium",
+          notes: "надбавка за риск (noun phrase)",
+        },
+        {
+          id: "supply-shock",
+          word: "Supply shock",
+          pronounce: "supply shock",
+          notes: "шок предложения (noun phrase)",
+        },
+        {
+          id: "tariff-barrier",
+          word: "Tariff barrier",
+          pronounce: "tariff barrier",
+          notes: "тарифный барьер (noun phrase)",
+        },
+        {
+          id: "tax-evasion",
+          word: "Tax evasion",
+          pronounce: "tax evasion",
+          notes: "уклонение от уплаты налогов (noun phrase)",
+        },
+        {
+          id: "tax-incentive",
+          word: "Tax incentive",
+          pronounce: "tax incentive",
+          notes: "налоговая льгота (noun phrase)",
+        },
+        {
+          id: "venture-capital",
+          word: "Venture capital",
+          pronounce: "venture capital",
+          notes: "венчурный капитал (noun phrase)",
+        },
+        {
+          id: "wage-growth",
+          word: "Wage growth",
+          pronounce: "wage growth",
+          notes: "рост заработной платы (noun phrase)",
+        },
+        {
+          id: "wealth-distribution",
+          word: "Wealth distribution",
+          pronounce: "wealth distribution",
+          notes: "распределение богатства (noun phrase)",
+        },
+        {
+          id: "write-down",
+          word: "Write-down",
+          pronounce: "write-down",
+          notes: "уценка актива (noun)",
+        },
+        {
+          id: "write-off",
+          word: "Write-off",
+          pronounce: "write-off",
+          notes: "списание долга (noun)",
+        },
+        {
+          id: "yield-curve",
+          word: "Yield curve",
+          pronounce: "yield curve",
+          notes: "кривая доходности (noun phrase)",
+        },
+        {
+          id: "zero-lower-bound",
+          word: "Zero lower bound",
+          pronounce: "zero lower bound",
+          notes: "нулевая нижняя граница (noun phrase)",
+        },
+        {
+          id: "deregulate",
+          word: "Deregulate",
+          pronounce: "deregulate",
+          notes: "дерегулировать (verb)",
+        },
+        {
+          id: "devalue",
+          word: "Devalue",
+          pronounce: "devalue",
+          notes: "девальвировать (verb)",
+        },
+        {
+          id: "stimulate-demand",
+          word: "Stimulate demand",
+          pronounce: "stimulate demand",
+          notes: "стимулировать спрос (verb phrase)",
+        },
+        {
+          id: "boost-growth",
+          word: "Boost growth",
+          pronounce: "boost growth",
+          notes: "ускорять рост (verb phrase)",
+        },
+        {
+          id: "cut-interest-rates",
+          word: "Cut interest rates",
+          pronounce: "cut interest rates",
+          notes:
+            "снижать процентные ставки (verb phrase)",
+        },
+        {
+          id: "raise-funds",
+          word: "Raise funds",
+          pronounce: "raise funds",
+          notes: "привлекать средства (verb phrase)",
+        },
+        {
+          id: "raise-revenues",
+          word: "Raise revenues",
+          pronounce: "raise revenues",
+          notes: "увеличивать доходы (verb phrase)",
+        },
+        {
+          id: "expand-output",
+          word: "Expand output",
+          pronounce: "expand output",
+          notes: "увеличивать производство (verb phrase)",
+        },
+        {
+          id: "regulate-markets",
+          word: "Regulate markets",
+          pronounce: "regulate markets",
+          notes: "регулировать рынки (verb phrase)",
+        },
+        {
+          id: "restructure-debt",
+          word: "Restructure debt",
+          pronounce: "restructure debt",
+          notes: "реструктурировать долг (verb phrase)",
+        },
+        {
+          id: "stabilize-prices",
+          word: "Stabilize prices",
+          pronounce: "stabilize prices",
+          notes: "стабилизировать цены (verb phrase)",
+        },
+        {
+          id: "suppress-inflation",
+          word: "Suppress inflation",
+          pronounce: "suppress inflation",
+          notes: "сдерживать инфляцию (verb phrase)",
+        },
+        {
+          id: "stimulate-innovation",
+          word: "Stimulate innovation",
+          pronounce: "stimulate innovation",
+          notes: "стимулировать инновации (verb phrase)",
+        },
+        {
+          id: "tighten-policy",
+          word: "Tighten policy",
+          pronounce: "tighten policy",
+          notes: "ужесточать политику (verb phrase)",
+        },
+        {
+          id: "loosen-policy",
+          word: "Loosen policy",
+          pronounce: "loosen policy",
+          notes: "смягчать политику (verb phrase)",
+        },
+        {
+          id: "invest-capital",
+          word: "Invest capital",
+          pronounce: "invest capital",
+          notes: "инвестировать капитал (verb phrase)",
+        },
+        {
+          id: "allocate-resources",
+          word: "Allocate resources",
+          pronounce: "allocate resources",
+          notes: "распределять ресурсы (verb phrase)",
+        },
+        {
+          id: "increase-output",
+          word: "Increase output",
+          pronounce: "increase output",
+          notes: "увеличивать выпуск (verb phrase)",
+        },
+        {
+          id: "hedge-risks",
+          word: "Hedge risks",
+          pronounce: "hedge risks",
+          notes: "хеджировать риски (verb phrase)",
+        },
+        {
+          id: "cut-spending",
+          word: "Cut spending",
+          pronounce: "cut spending",
+          notes: "сокращать расходы (verb phrase)",
+        },
+        {
+          id: "raise-taxes",
+          word: "Raise taxes",
+          pronounce: "raise taxes",
+          notes: "повышать налоги (verb phrase)",
+        },
+        {
+          id: "liberalize-trade",
+          word: "Liberalize trade",
+          pronounce: "liberalize trade",
+          notes: "либерализовать торговлю (verb)",
+        },
+        {
+          id: "adjust-prices",
+          word: "Adjust prices",
+          pronounce: "adjust prices",
+          notes: "корректировать цены (verb phrase)",
+        },
+        {
+          id: "expand-production",
+          word: "Expand production",
+          pronounce: "expand production",
+          notes: "расширять производство (verb phrase)",
+        },
+        {
+          id: "reduce-costs",
+          word: "Reduce costs",
+          pronounce: "reduce costs",
+          notes: "сокращать издержки (verb phrase)",
+        },
+        {
+          id: "hedge",
+          word: "Hedge",
+          pronounce: "hedge",
+          notes: "хеджировать (verb)",
+        },
+        {
+          id: "export-verb",
+          word: "Export (verb)",
+          pronounce: "export",
+          notes: "экспортировать (verb)",
+        },
+        {
+          id: "subsidize",
+          word: "Subsidize",
+          pronounce: "subsidize",
+          notes: "субсидировать (verb)",
+        },
+        {
+          id: "regulate",
+          word: "Regulate",
+          pronounce: "regulate",
+          notes: "регулировать (verb)",
+        },
+        {
+          id: "accumulate",
+          word: "Accumulate",
+          pronounce: "accumulate",
+          notes: "накапливать (verb)",
+        },
+        {
+          id: "borrow",
+          word: "Borrow",
+          pronounce: "borrow",
+          notes: "занимать; брать взаймы (verb)",
+        },
+        {
+          id: "lend",
+          word: "Lend",
+          pronounce: "lend",
+          notes: "давать взаймы (verb)",
+        },
+        {
+          id: "joint-venture",
+          word: "Joint venture",
+          pronounce: "joint venture",
+          notes: "совместное предприятие (noun phrase)",
+        },
+        {
+          id: "job-creation",
+          word: "Job creation",
+          pronounce: "job creation",
+          notes: "создание рабочих мест (noun phrase)",
+        },
+        {
+          id: "junk-bond",
+          word: "Junk bond",
+          pronounce: "junk bond",
+          notes:
+            "«мусорная» облигация; высокодоходная облигация (noun phrase)",
+        },
+        {
+          id: "keynesian-economics",
+          word: "Keynesian economics",
+          pronounce: "keynesian economics",
+          notes:
+            "кейнсианская экономика; кейнсианство (noun phrase)",
+        },
+        {
+          id: "key-performance-indicator",
+          word: "Key performance indicator",
+          pronounce: "key performance indicator",
+          notes:
+            "ключевой показатель эффективности; KPI (noun phrase)",
+        },
+        {
+          id: "knowledge-economy",
+          word: "Knowledge economy",
+          pronounce: "knowledge economy",
+          notes: "экономика знаний (noun phrase)",
+        },
+        {
+          id: "quasi-fiscal-operations",
+          word: "Quasi-fiscal operations",
+          pronounce: "quasi fiscal operations",
+          notes: "квази-фискальные операции (noun phrase)",
+        },
+        {
+          id: "quasi-money",
+          word: "Quasi-money",
+          pronounce: "quasi money",
+          notes:
+            "квазиденьги; высоколиквидные финансовые активы (noun)",
+        },
+        {
+          id: "unemployment-rate",
+          word: "Unemployment rate",
+          pronounce: "unemployment rate",
+          notes: "уровень безработицы (noun phrase)",
+        },
+        {
+          id: "underemployment",
+          word: "Underemployment",
+          pronounce: "underemployment",
+          notes:
+            "неполная занятость; скрытая безработица (noun)",
+        },
+        {
+          id: "utility",
+          word: "Utility",
+          pronounce: "utility",
+          notes:
+            "полезность; удовлетворённость потребителя (noun)",
+        },
+        {
+          id: "x-efficiency",
+          word: "X-efficiency",
+          pronounce: "x efficiency",
+          notes:
+            "икс-эффективность; эффективность фирмы при несовершенной конкуренции (noun phrase)",
+        },
+        {
+          id: "x-inefficiency",
+          word: "X-inefficiency",
+          pronounce: "x inefficiency",
+          notes:
+            "икс-неэффективность; потеря эффективности из-за отсутствия конкуренции (noun phrase)",
+        },
+        {
+          id: "yield",
+          word: "Yield",
+          pronounce: "yield",
+          notes:
+            "доходность (финансового инструмента) (noun)",
+        },
+        {
+          id: "youth-unemployment",
+          word: "Youth unemployment",
+          pronounce: "youth unemployment",
+          notes: "молодёжная безработица (noun phrase)",
+        },
+        {
+          id: "zero-sum-game",
+          word: "Zero-sum game",
+          pronounce: "zero sum game",
+          notes:
+            "игра с нулевой суммой; выигрыш одного равен проигрышу другого (noun)",
+        },
+        {
+          id: "volatility",
+          word: "Volatility",
+          pronounce: "volatility",
+          notes: "волатильность; изменчивость (noun)",
+        },
+      ];
+
+      // === 2. TEXT-TO-SPEECH FUNCTION ===
+      function speak(text) {
+        if (!("speechSynthesis" in window)) {
+          alert(
+            "Sorry, your browser does not support audio pronunciation (speech synthesis)."
+          );
+          return;
+        }
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "en-US"; // or "en-GB"
+        window.speechSynthesis.speak(utterance);
+      }
+
+      const termsContainerEl = document.getElementById("termsContainer");
+      const searchInputEl = document.getElementById("searchInput");
+      const noResultsEl = document.getElementById("noResults");
+      const indexListEl = document.getElementById("indexList");
+      const loadMoreBtn = document.getElementById("loadMoreBtn");
+      const loadMoreContainer = document.getElementById("loadMoreContainer");
+
+      // Sort terms alphabetically by word
+      const termsSorted = terms.slice().sort((a, b) =>
+        a.word.localeCompare(b.word)
+      );
+      terms.length = 0;
+      terms.push(...termsSorted);
+
+      // === 3. A–Z INDEX ===
+      const alphabet = ["All"].concat("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));
+      let activeLetter = "All";
+
+      // Pagination state
+      let filteredTerms = [];
+      let visibleCount = PAGE_SIZE;
+
+      function renderIndex() {
+        indexListEl.innerHTML = "";
+        alphabet.forEach((letter) => {
+          const btn = document.createElement("button");
+          btn.className =
+            "index-item" + (letter === activeLetter ? " active" : "");
+          btn.textContent = letter;
+          btn.addEventListener("click", () => {
+            activeLetter = letter;
+            visibleCount = PAGE_SIZE; // reset pagination when letter changes
+            renderIndex();
+            applyFilter(false);
+          });
+          indexListEl.appendChild(btn);
+        });
+      }
+
+      // === 4. RENDER TERM CARDS ===
+      function renderTerms() {
+        termsContainerEl.innerHTML = "";
+        if (filteredTerms.length === 0) {
+          noResultsEl.style.display = "block";
+          loadMoreContainer.style.display = "none";
+          return;
+        } else {
+          noResultsEl.style.display = "none";
+        }
+
+        const toShow = filteredTerms.slice(0, visibleCount);
+
+        toShow.forEach((term) => {
+          const card = document.createElement("article");
+          card.className = "term-card";
+          card.id = "term-" + term.id;
+
+          const main = document.createElement("div");
+          main.className = "term-main";
+
+          const wordEl = document.createElement("div");
+          wordEl.className = "term-word";
+          wordEl.textContent = term.word;
+
+          const metaEl = document.createElement("div");
+          metaEl.className = "term-meta";
+          metaEl.textContent = term.notes || "";
+
+          main.appendChild(wordEl);
+          if (term.notes) {
+            main.appendChild(metaEl);
+          }
+
+          const playBtn = document.createElement("button");
+          playBtn.className = "play-button";
+          playBtn.type = "button";
+          playBtn.innerHTML = '<span class="icon">🔊</span><span>Play</span>';
+          playBtn.addEventListener("click", () => speak(term.pronounce));
+
+          card.appendChild(main);
+          card.appendChild(playBtn);
+          termsContainerEl.appendChild(card);
+        });
+
+        // Show/hide "Load more"
+        if (visibleCount >= filteredTerms.length) {
+          loadMoreContainer.style.display = "none";
+        } else {
+          loadMoreContainer.style.display = "block";
+        }
+      }
+
+      // === 5. SEARCH + LETTER FILTER ===
+      function applyFilter(resetVisible = true) {
+        if (resetVisible) {
+          visibleCount = PAGE_SIZE;
+        }
+
+        const query = searchInputEl.value.trim().toLowerCase();
+
+        filteredTerms = terms.filter((term) => {
+          const matchesSearch = term.word.toLowerCase().includes(query);
+          const firstLetter = term.word.charAt(0).toUpperCase();
+          const matchesLetter =
+            activeLetter === "All" ? true : firstLetter === activeLetter;
+          return matchesSearch && matchesLetter;
+        });
+
+        renderTerms();
+      }
+
+      searchInputEl.addEventListener("input", () => applyFilter(true));
+
+      loadMoreBtn.addEventListener("click", () => {
+        visibleCount += PAGE_SIZE;
+        renderTerms();
+      });
+
+      // === 6. QUOTE MODAL / LIGHTBOX ===
+      const quoteModal = document.getElementById("quoteModal");
+      const quoteTextEl = document.getElementById("quoteText");
+      const quoteAuthorEl = document.getElementById("quoteAuthor");
+      const quoteCloseBtn = quoteModal.querySelector(".modal-close");
+      const quoteButton = document.getElementById("quoteButton");
+
+      const quotes = [
+        {
+          text:
+            "Economics is the study of how society manages its scarce resources.",
+          author: "N. Gregory Mankiw",
+        },
+        {
+          text:
+            "There is no such thing as a free lunch.",
+          author: "Popular economics proverb",
+        },
+        {
+          text:
+            "The curious task of economics is to demonstrate to men how little they really know about what they imagine they can design.",
+          author: "Friedrich Hayek",
+        },
+        {
+          text:
+            "Commerce is a game of skill which everyone cannot play and few can play well.",
+          author: "Ralph Waldo Emerson",
+        },
+        {
+          text:
+            "The economy is a very sensitive organism.",
+          author: "Hjalmar Schacht",
+        },
+        {
+          text:
+            "People don’t understand the importance of economics. They think economics is about money. Economics is about choices.",
+          author: "Ben Bernanke",
+        },
+        {
+          text:
+            "The stock market is filled with individuals who know the price of everything, but the value of nothing.",
+          author: "Philip Fisher",
+        },
+        {
+          text:
+            "Economic growth without social progress lets the great majority of people remain in poverty, while a privileged few reap the benefits of rising abundance.",
+          author: "John F. Kennedy",
+        },
+        {
+          text:
+            "In economics, hope and faith coexist with great scientific pretension and also a deep desire for respectability.",
+          author: "John Kenneth Galbraith",
+        },
+        {
+          text:
+            "The only function of economic forecasting is to make astrology look respectable.",
+          author: "John Kenneth Galbraith",
+        },
+        {
+          text:
+            "An economist is an expert who will know tomorrow why the things he predicted yesterday didn’t happen today.",
+          author: "Laurence J. Peter",
+        },
+        {
+          text:
+            "Inflation is taxation without legislation.",
+          author: "Milton Friedman",
+        },
+        {
+          text:
+            "Economics is extremely useful as a form of employment for economists.",
+          author: "John Kenneth Galbraith",
+        },
+        {
+          text:
+            "The fundamental problem of economics is scarcity: we can’t have everything we want.",
+          author: "Unknown",
+        },
+        {
+          text:
+            "A budget tells us what we can’t afford, but it doesn’t keep us from buying it.",
+          author: "William Feather",
+        },
+        {
+          text:
+            "Markets can remain irrational longer than you can remain solvent.",
+          author: "John Maynard Keynes",
+        },
+        {
+          text:
+            "Capitalism is the astounding belief that the most wickedest of men will do the most wickedest of things for the greatest good of everyone.",
+          author: "John Maynard Keynes",
+        },
+        {
+          text:
+            "The first lesson of economics is scarcity: There is never enough of anything to fully satisfy all those who want it. The first lesson of politics is to ignore the first lesson of economics.",
+          author: "Thomas Sowell",
+        },
+        {
+          text:
+            "Wealth consists not in having great possessions, but in having few wants.",
+          author: "Epictetus",
+        },
+        {
+          text:
+            "A society that puts equality before freedom will get neither. A society that puts freedom before equality will get a high degree of both.",
+          author: "Milton Friedman",
+        },
+        {
+          text:
+            "You can choose to ignore economics, but you can’t ignore the consequences of ignoring economics.",
+          author: "Unknown",
+        },
+        {
+          text:
+            "Economic prosperity is not so much a material problem as it is a moral one.",
+          author: "Ludwig von Mises",
+        },
+        {
+          text:
+            "Economics is not about goods and services; it is about human choice and action.",
+          author: "Ludwig von Mises",
+        },
+        {
+          text:
+            "It is not the employer who pays the wages. Employers only handle the money. It is the customer who pays the wages.",
+          author: "Henry Ford",
+        },
+        {
+          text:
+            "The human condition is always to push forward for the better and economics is the study of that process.",
+          author: "Brian Wesbury",
+        },
+        {
+          text:
+            "One of the great mistakes is to judge policies and programs by their intentions rather than their results.",
+          author: "Milton Friedman",
+        },
+        {
+          text:
+            "Good economists observe both the immediate effect and the longer-term consequences.",
+          author: "Paraphrased from Henry Hazlitt",
+        },
+      ];
+
+      let currentQuoteIndex = 0;
+
+      function showQuoteAt(index) {
+        if (!quotes.length) return;
+        const safeIndex = ((index % quotes.length) + quotes.length) % quotes.length;
+        currentQuoteIndex = safeIndex;
+        const q = quotes[safeIndex];
+        quoteTextEl.textContent = q.text;
+        quoteAuthorEl.textContent = q.author ? "— " + q.author : "";
+      }
+
+      function openQuoteModal(startRandom = true) {
+        if (startRandom) {
+          currentQuoteIndex = Math.floor(Math.random() * quotes.length);
+        }
+        showQuoteAt(currentQuoteIndex);
+        quoteModal.classList.add("active");
+        quoteModal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeQuoteModal() {
+        quoteModal.classList.remove("active");
+        quoteModal.setAttribute("aria-hidden", "true");
+      }
+
+      const prevQuoteBtn = document.getElementById("prevQuoteBtn");
+      const nextQuoteBtn = document.getElementById("nextQuoteBtn");
+
+      if (prevQuoteBtn && nextQuoteBtn) {
+        prevQuoteBtn.addEventListener("click", () => {
+          showQuoteAt(currentQuoteIndex - 1);
+        });
+
+        nextQuoteBtn.addEventListener("click", () => {
+          showQuoteAt(currentQuoteIndex + 1);
+        });
+      }
+
+      quoteCloseBtn.addEventListener("click", closeQuoteModal);
+
+      quoteModal.addEventListener("click", (event) => {
+        if (event.target === quoteModal) {
+          closeQuoteModal();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeQuoteModal();
+        }
+      });
+
+      if (quoteButton) {
+        quoteButton.addEventListener("click", () => openQuoteModal(true));
+      }
+
+// === INITIAL RENDER ===
+      renderIndex();
+      applyFilter(true);
+    </script>
+
+    <footer class="footer">
+      <p>
+        © 2025–2026
+        <a href="mailto:grishechko_eg@pfur.ru">Elizaveta Grishechko</a>
+      </p>
+    </footer>
+  </body>
+</html>
